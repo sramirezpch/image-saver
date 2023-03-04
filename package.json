@@ -1,0 +1,24 @@
+{
+  "name": "nft-image-saver",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sramirezpch/nft-image-saver.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sramirezpch/nft-image-saver/issues"
+  },
+  "homepage": "https://github.com/sramirezpch/nft-image-saver#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
