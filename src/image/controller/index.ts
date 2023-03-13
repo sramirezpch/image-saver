@@ -7,10 +7,7 @@ export default class ImageController extends BaseController {
   private router: Router;
   private imageService: ImageService;
 
-  constructor(
-    private readonly _imageService: ImageService,
-    readonly prefix: string
-  ) {
+  constructor(readonly _imageService: ImageService, readonly prefix: string) {
     super(prefix);
     this.imageService = _imageService;
     this.router = Router();
@@ -18,7 +15,7 @@ export default class ImageController extends BaseController {
 
   public defineHandlers(): Router {
     super.defineHandlers();
-    this.router.post("/save", this.imageService.saveImage);
+    this.router.post("/save", this.imageService.storeImage);
 
     return this.router;
   }
