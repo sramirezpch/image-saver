@@ -1,0 +1,15 @@
+version: '3'
+services:
+  nft-image-saver:
+    container_name: nft-image-saver
+    build:
+      context: .
+      dockerfile: ./infra/.dockerfile
+    networks:
+      - localhost
+    ports:
+      - "3001:8080"
+    
+    
+networks:
+  localhost: {}
