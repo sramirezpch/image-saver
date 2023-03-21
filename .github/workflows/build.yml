@@ -23,8 +23,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build Docker image
-        run: |
-          cd ../.. && make build-image
+        run: make build-image
       - name: Tag Docker image
         run: |
           docker tag nft-image-saver sramirezpch/nft-image-saver
