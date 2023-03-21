@@ -4,7 +4,7 @@ services:
     container_name: nft-image-saver
     build:
       context: .
-      dockerfile: ./infra/.dockerfile
+      dockerfile: ./infra/Dockerfile
     networks:
       - localhost
     ports:
