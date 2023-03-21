@@ -22,9 +22,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v2
-        with:
-          context: ../../
-          push: true
-          tags: sramirezpch/nft-image-saver
+      - name: Build Docker image
+        run: |
+          cd ../.. && make build-image
+      - name: Tag Docker image
+        run: |
+          docker tag nft-image-saver sramirezpch/nft-image-saver
+      - name: Push Docker image to Docker Hub
+        run: |
+          docker push sramirezpch/nft-image-saver
