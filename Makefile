@@ -1,5 +1,5 @@
 IMAGE_NAME=nft-image-saver
-DOCKERFILE_PATH=./infra/.dockerfile
+DOCKERFILE_PATH=./infra/Dockerfile
 COMPOSE_FILE=./docker-compose.yml
 
 build-image:
