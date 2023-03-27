@@ -1,20 +1,16 @@
 package main
 
 import (
-	"net/http"
-
-	"github.com/gin-gonic/gin"
+	"github.com/sramirezpch/image-saver/internal/adapters"
+	"github.com/sramirezpch/image-saver/internal/service"
 )
 
 func main() {
-	router := gin.Default()
+	imageService := service.NewService()
 
-	router.GET("/hello", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{"message": "Hello!"})
-	})
+	router := adapters.NewRouter(imageService)
 
-	if err := router.Run(":8080"); err != nil {
-		panic(err)
-	}
+	router.AttachHandlers()
 
+	router.Run()
 }
