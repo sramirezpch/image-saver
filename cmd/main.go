@@ -1,38 +1,25 @@
 package main
 
 import (
+	"context"
 	"os"
 
 	"github.com/sramirezpch/image-saver/internal/adapters"
 	"github.com/sramirezpch/image-saver/internal/service"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/s3"
+	"github.com/aws/aws-sdk-go-v2/config"
+	"github.com/aws/aws-sdk-go-v2/credentials"
+	"github.com/aws/aws-sdk-go-v2/service/s3"
 )
 
-func createAwsSession() (*session.Session, error) {
-	creds := credentials.NewStaticCredentials(os.Getenv("AWS_ACCESS_KEY"), os.Getenv("AWS_SECRET_KEY"), "")
-
-	sess, err := session.NewSession(&aws.Config{
-		Region:      aws.String("us-east-1"),
-		Credentials: creds,
-	})
-
-	if err != nil {
-		return nil, err
-	}
-
-	return sess, nil
-}
 func main() {
-	sess, err := createAwsSession()
+	cfg, err := config.LoadDefaultConfig(context.Background(), config.WithRegion("us-east-1"), config.WithCredentialsProvider(
+		credentials.NewStaticCredentialsProvider(os.Getenv("AWS_ACCESS_KEY"), os.Getenv("AWS_SECRET_KEY"), "")))
 	if err != nil {
 		panic(err)
 	}
 
-	s3Client := s3.New(sess, &aws.Config{Region: aws.String("us-east-1")})
+	s3Client := s3.NewFromConfig(cfg)
 
 	imageService := service.NewService(s3Client)
 
